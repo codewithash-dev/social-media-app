@@ -2,8 +2,11 @@
 
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-export default function SocialMediaProject() {
+gsap.registerPlugin(ScrollTrigger);
+
+export default function EcommerceProject() {
   const heroRef = useRef(null);
   const contentRef = useRef(null);
 
@@ -16,8 +19,17 @@ export default function SocialMediaProject() {
 
     gsap.fromTo(
       contentRef.current,
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.8, delay: 0.3, ease: 'power3.out' }
+      { opacity: 0, y: 100 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: contentRef.current,
+          start: 'top 80%',
+        },
+      }
     );
   }, []);
 
@@ -44,115 +56,99 @@ export default function SocialMediaProject() {
 
       <section className="pt-32 pb-12 px-6">
         <div ref={heroRef} className="max-w-5xl mx-auto">
-          <a href="/projects" className="text-cyan-400 hover:text-cyan-300 mb-6 inline-block">
+          <a href="/projects" className="text-purple-400 hover:text-purple-300 transition mb-4 inline-block">
             ← Back to Projects
           </a>
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">Social Media Clone</h1>
-          <p className="text-xl text-gray-400 mb-6">
-            Social networking platform with posts, likes, comments, and real-time messaging.
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <span className="px-4 py-2 bg-blue-600/20 text-blue-400 rounded-full">Next.js</span>
-            <span className="px-4 py-2 bg-orange-600/20 text-orange-400 rounded-full">Firebase</span>
-            <span className="px-4 py-2 bg-cyan-600/20 text-cyan-400 rounded-full">Tailwind CSS</span>
-            <span className="px-4 py-2 bg-purple-600/20 text-purple-400 rounded-full">Socket.io</span>
+          <div className="bg-gradient-to-br from-purple-500 via-pink-500 to-red-500 rounded-2xl overflow-hidden mb-8">
+            <img 
+              src="/projects/ecommerce.jpg" 
+              alt="E-commerce App"
+              className="w-full h-96 object-cover"
+            />
           </div>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6">E-commerce App</h1>
+          <p className="text-xl text-gray-400">
+            Full-stack e-commerce platform with shopping cart, payments, and order management.
+          </p>
         </div>
       </section>
 
-      <section className="pb-20 px-6">
-        <div ref={contentRef} className="max-w-5xl mx-auto">
-          <div className="bg-gradient-to-br from-blue-500 via-cyan-500 to-teal-500 rounded-2xl h-96 mb-12 overflow-hidden">
-  <img 
-              src="/projects/social-media.jpg" 
-              alt="Social Media App" 
-              className="w-full h-full object-cover"
-            />
-            <div className="text-8xl">💬</div>
+      <section ref={contentRef} className="pb-20 px-6">
+        <div className="max-w-5xl mx-auto space-y-16">
+          <div>
+            <h2 className="text-3xl font-bold mb-6">Overview</h2>
+            <p className="text-gray-400 leading-relaxed text-lg">
+              A comprehensive e-commerce platform built with React and Node.js, featuring product browsing, cart management, secure checkout with Stripe integration, and order tracking. The application handles user authentication, product inventory, and real-time updates.
+            </p>
           </div>
 
-          <div className="space-y-12">
-            <div>
-              <h2 className="text-3xl font-bold mb-4">Overview</h2>
-              <p className="text-gray-300 leading-relaxed">
-                A full-featured social media platform built with Next.js and Firebase. Users can create profiles, share posts with images, interact through likes and comments, follow other users, and chat in real-time.
-              </p>
-            </div>
+          <div>
+            <h2 className="text-3xl font-bold mb-6">Key Features</h2>
+            <ul className="space-y-3">
+              {[
+                'Product catalog with search and filtering',
+                'Shopping cart with real-time updates',
+                'Secure payment processing with Stripe',
+                'User authentication and profiles',
+                'Order history and tracking',
+                'Admin dashboard for product management',
+                'Responsive design for all devices',
+              ].map((feature, index) => (
+                <li key={index} className="flex items-start gap-3">
+                  <svg className="w-6 h-6 text-purple-500 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-gray-300 text-lg">{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            <div>
-              <h2 className="text-3xl font-bold mb-4">Key Features</h2>
-              <ul className="space-y-3 text-gray-300">
-                <li className="flex items-start gap-3">
-                  <span className="text-cyan-400 mt-1">✓</span>
-                  <span>User profiles with customizable bios and avatars</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-cyan-400 mt-1">✓</span>
-                  <span>Create posts with text and image uploads</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-cyan-400 mt-1">✓</span>
-                  <span>Like and comment on posts</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-cyan-400 mt-1">✓</span>
-                  <span>Follow/unfollow users and personalized feed</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-cyan-400 mt-1">✓</span>
-                  <span>Real-time messaging with Socket.io</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-cyan-400 mt-1">✓</span>
-                  <span>Notifications for likes, comments, and follows</span>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h2 className="text-3xl font-bold mb-4">Tech Stack</h2>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-cyan-400">Frontend</h3>
-                  <ul className="space-y-2 text-gray-300">
-                    <li>• Next.js 14</li>
-                    <li>• React with Server Components</li>
-                    <li>• Tailwind CSS</li>
-                    <li>• React Query</li>
-                  </ul>
-                </div>
-                <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-blue-400">Backend</h3>
-                  <ul className="space-y-2 text-gray-300">
-                    <li>• Firebase Authentication</li>
-                    <li>• Firestore Database</li>
-                    <li>• Firebase Storage</li>
-                    <li>• Socket.io for real-time chat</li>
-                  </ul>
-                </div>
+          <div>
+            <h2 className="text-3xl font-bold mb-6">Tech Stack</h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
+                <h3 className="text-xl font-bold mb-4 text-purple-400">Frontend</h3>
+                <ul className="space-y-2 text-gray-300">
+                  <li>• React</li>
+                  <li>• Redux for state management</li>
+                  <li>• Tailwind CSS</li>
+                  <li>• Axios for API calls</li>
+                </ul>
+              </div>
+              <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
+                <h3 className="text-xl font-bold mb-4 text-pink-400">Backend</h3>
+                <ul className="space-y-2 text-gray-300">
+                  <li>• Node.js & Express</li>
+                  <li>• MongoDB with Mongoose</li>
+                  <li>• Stripe API</li>
+                  <li>• JWT authentication</li>
+                </ul>
               </div>
             </div>
+          </div>
 
-            <div>
-              <h2 className="text-3xl font-bold mb-4">Challenges & Solutions</h2>
-              <p className="text-gray-300 leading-relaxed mb-4">
-                Building real-time features at scale was challenging. I used Socket.io for instant messaging and Firebase's real-time listeners for notifications, ensuring users get immediate updates without constantly refreshing.
+          <div>
+            <h2 className="text-3xl font-bold mb-6">Challenges & Solutions</h2>
+            <div className="space-y-4 text-gray-400 leading-relaxed text-lg">
+              <p>
+                One of the biggest challenges was implementing secure payment processing while maintaining a smooth user experience. I integrated Stripe's payment intent API to handle payments securely on the backend while providing real-time feedback to users on the frontend.
               </p>
-              <p className="text-gray-300 leading-relaxed">
-                Image optimization was crucial for performance. I implemented Next.js Image component and Firebase Storage compression to ensure fast load times even with lots of media content.
+              <p>
+                Another challenge was managing complex state across the shopping cart, user authentication, and order processing. Redux helped centralize state management and keep the application predictable and maintainable.
               </p>
             </div>
+          </div>
 
-            <div className="flex justify-center">
-  <a 
-    href="https://github.com/codewithash-dev"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-300 hover:scale-105"
-  >
-    View Code →
-  </a>
-</div>
+          <div className="flex justify-center pt-8">
+            <a 
+              href="https://github.com/codewithash-dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-300 hover:scale-105"
+            >
+              View Code →
+            </a>
           </div>
         </div>
       </section>
