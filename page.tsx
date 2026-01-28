@@ -143,22 +143,16 @@ export default function SocialMediaProject() {
               </p>
             </div>
 
-            <div className="flex gap-4">
-              <a
-                href="https://github.com/codewithash-dev"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 bg-cyan-600 hover:bg-cyan-700 rounded-lg font-semibold transition"
-              >
-                View Code →
-              </a>
-              <a
-                href="#"
-                className="px-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-lg font-semibold transition"
-              >
-                Live Demo →
-              </a>
-            </div>
+            <div className="flex justify-center">
+  <a 
+    href="https://github.com/codewithash-dev"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-300 hover:scale-105"
+  >
+    View Code →
+  </a>
+</div>
           </div>
         </div>
       </section>
