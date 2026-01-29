@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import { Post } from '@/types/social';
-import PostCard from '@/components/social/PostCard';
+import InstagramPostCard from '@/components/social/InstagramPostCard';
 import CommentSection from '@/components/social/CommentSection';
-import SocialNavbar from '@/components/social/Navbar';
+import InstagramNavbar from '@/components/social/InstagramNavbar';
 
 export default function PostDetailPage() {
   const params = useParams();
@@ -31,9 +31,9 @@ export default function PostDetailPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-black">
-        <SocialNavbar />
+        <InstagramNavbar />
         <div className="flex items-center justify-center h-64">
-          <p className="text-white">Loading...</p>
+          <div className="w-8 h-8 border-4 border-gray-600 border-t-white rounded-full animate-spin"></div>
         </div>
       </div>
     );
@@ -42,7 +42,7 @@ export default function PostDetailPage() {
   if (!post) {
     return (
       <div className="min-h-screen bg-black">
-        <SocialNavbar />
+        <InstagramNavbar />
         <div className="max-w-2xl mx-auto px-4 py-8">
           <p className="text-white text-center">Post not found</p>
         </div>
@@ -51,11 +51,13 @@ export default function PostDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black">
-      <SocialNavbar />
+    <div className="min-h-screen bg-black pb-20 md:pb-0">
+      <InstagramNavbar />
       <div className="max-w-2xl mx-auto px-4 py-8">
-        <PostCard post={post} onUpdate={fetchPost} />
-        <CommentSection postId={post.id} />
+        <InstagramPostCard post={post} onUpdate={fetchPost} />
+        <div className="mt-6">
+          <CommentSection postId={post.id} />
+        </div>
       </div>
     </div>
   );

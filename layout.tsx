@@ -1,4 +1,4 @@
-import SocialNavbar from '@/components/social/Navbar';
+import SocialNavbar from '@/components/social/InstagramNavbar';
 
 export default function SocialLayout({
   children,
